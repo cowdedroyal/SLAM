@@ -1,0 +1,66 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create-build-folder",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "${fileDirname}/build"
+            ]
+        },
+        {
+            "label": "cmake",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "../"
+            ],
+            "options": {
+                "cwd": "${fileDirname}/build"
+            },
+            "dependsOn": "create-build-folder"
+        },
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "args": [],
+            "options": {
+                "cwd": "${fileDirname}/build"
+            },
+            "dependsOn": "cmake"
+        },
+        {
+            "label": "build",
+            "dependsOn": [
+                "make"
+            ]
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-I",
+                "/usr/include/eigen3"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: /usr/bin/g++"
+        }
+    ]
+}
