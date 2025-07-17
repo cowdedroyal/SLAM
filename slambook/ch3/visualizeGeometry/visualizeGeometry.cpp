@@ -59,7 +59,7 @@ ostream &operator<<(ostream &out, const QuaternionDraw quat)
     return out;
 }
 
-istream &operator>>(istream &in, const QuaternionDraw quat)
+istream &operator>>(istream &in, QuaternionDraw &quat)
 {
     return in;
 }
